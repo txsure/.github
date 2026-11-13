@@ -1,0 +1,71 @@
+name: Feature request
+description: Propose a capability txsure does not have yet.
+title: "feat: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        txsure is deliberately narrow: it verifies manual bank transfers and never moves
+        money. Requests that turn it into a payment processor or a hosted SaaS are out of
+        scope — see the vision in `plans/01-vision.md`.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the situation, not the implementation. Who hits this, and how often?
+      placeholder: Merchants with three branches cannot tell which account a payment was meant for.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should txsure do? API shape, UI, or config are all fine.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Including the workaround you use today.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - API (apps/api)
+        - Dashboard (apps/web)
+        - Checkout (apps/web, public page)
+        - SDK (packages/sdk)
+        - Webhooks / jobs
+        - Telegram bot
+        - Docker / self-hosting
+        - Docs
+        - Not sure
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This keeps txsure free of money movement and fund custody.
+          required: true
+        - label: This works for a self-hosted instance with no central cloud service.
+          required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Mockups, links to how Stripe or a comparable tool solves it, related issues.
+    validations:
+      required: false

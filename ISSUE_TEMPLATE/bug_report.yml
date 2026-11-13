@@ -1,0 +1,90 @@
+name: Bug report
+description: Something is broken or behaves differently than documented.
+title: "bug: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please do not include real transaction references,
+        account numbers, or screenshots from a live merchant in a public issue.
+        Security problems belong in a private advisory — see SECURITY.md.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: The actual behaviour, in one or two sentences.
+      placeholder: The checkout page returns 500 when the merchant has two payment accounts.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      placeholder: The bank picker should list both accounts.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps, from a fresh instance if you can.
+      placeholder: |
+        1. Self-host txsure with `docker compose up -d`
+        2. Create an account and two payment accounts
+        3. Create a session with the SDK and open the checkout URL
+        4. See the error
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - API (apps/api)
+        - Dashboard (apps/web)
+        - Checkout (apps/web, public page)
+        - SDK (packages/sdk)
+        - Webhooks / jobs
+        - Telegram bot
+        - Docker / self-hosting
+        - Docs
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: txsure version or commit
+      description: The image tag, git commit, or `@txsure/sdk` version you are running.
+      placeholder: v0.1.0 / 47a46ef / @txsure/sdk 0.6.1
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Where it runs and what it talks to. Redact hostnames and secrets.
+      placeholder: |
+        - Deploy: Docker Compose on Ubuntu 24.04 / local `pnpm dev`
+        - Node: 22
+        - Postgres: 17 (bundled container)
+        - Redis: 7 (bundled container)
+        - Browser (for UI bugs): Chrome 141
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs, stack traces, or screenshots
+      description: API logs (`docker compose logs app`), browser console, or a screenshot. Redact secrets first.
+      render: shell
+    validations:
+      required: false
